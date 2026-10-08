@@ -1,0 +1,12 @@
+{
+  "name": "Saltitos de Algodón",
+  "short_name": "Saltitos",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF7EF",
+  "theme_color": "#FFF7EF",
+  "icons": [
+    { "src": "/assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
