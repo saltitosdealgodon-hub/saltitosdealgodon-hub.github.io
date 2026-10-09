@@ -8,8 +8,8 @@ window.SALTITOS = {
   config: {
     marca: "Saltitos de Algodón",
     dominio: "saltitosdealgodon.pe",
-    // WhatsApp con código de país, sin "+" ni espacios (Perú = 51). ← CAMBIAR
-    whatsapp: "51900000000",
+    // WhatsApp con código de país, sin "+" ni espacios (Perú = 51).
+    whatsapp: "51939342948",
     mensajeWa: "Hola Saltitos de Algodón 🐰 quiero información sobre sus conejitos.",
     instagram: "saltitosdealgodon", // usuario sin @ ← confirmar
     tiktok: "saltitosdealgodon", // usuario sin @ ← confirmar
