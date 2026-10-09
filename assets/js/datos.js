@@ -11,9 +11,10 @@ window.SALTITOS = {
     // WhatsApp con código de país, sin "+" ni espacios (Perú = 51).
     whatsapp: "51939342948",
     mensajeWa: "Hola Saltitos de Algodón 🐰 quiero información sobre sus conejitos.",
-    instagram: "saltitosdealgodon", // usuario sin @ ← confirmar
-    tiktok: "saltitosdealgodon", // usuario sin @ ← confirmar
-    correo: "hola@saltitosdealgodon.pe",
+    // Redes y correo: deja "" (vacío) para ocultar ese enlace en la web.
+    instagram: "saltitosdealgodon.pe", // usuario sin @
+    tiktok: "", // usuario sin @
+    correo: "", // p. ej. "hola@saltitosdealgodon.pe" cuando el dominio tenga correo
     ciudad: "Perú",
     horario: "Lunes a sábado · 9:00 a 19:00",
     pagos: ["Yape", "Plin", "Transferencia"],

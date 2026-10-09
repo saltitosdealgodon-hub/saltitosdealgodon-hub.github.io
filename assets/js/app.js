@@ -548,11 +548,16 @@
       a.target = "_blank";
       a.rel = "noopener";
     });
-    $$("[data-red='instagram']").forEach((a) => (a.href = `https://www.instagram.com/${config.instagram}/`));
-    $$("[data-red='tiktok']").forEach((a) => (a.href = `https://www.tiktok.com/@${config.tiktok}`));
-    $$("[data-red='correo']").forEach((a) => {
-      a.href = `mailto:${config.correo}`;
-      if (!a.children.length) a.textContent = config.correo;
+    const redes = {
+      instagram: (u) => `https://www.instagram.com/${u}/`,
+      tiktok: (u) => `https://www.tiktok.com/@${u}`,
+      correo: (u) => `mailto:${u}`,
+    };
+    $$("[data-red]").forEach((a) => {
+      const valor = config[a.dataset.red];
+      if (!valor) return (a.closest("li") || a).remove(); // sin dato: no se muestra
+      a.href = redes[a.dataset.red](valor);
+      if (!a.children.length) a.textContent = a.dataset.red === "correo" ? valor : `@${valor}`;
     });
     $$("[data-config]").forEach((el) => {
       const v = config[el.dataset.config];
