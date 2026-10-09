@@ -4,5 +4,13 @@
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=()
 
-/assets/*
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+# Datos, estilos y scripts: el navegador siempre pregunta si hay versión nueva
+/assets/js/*
+  Cache-Control: no-cache
+
+/assets/css/*
+  Cache-Control: no-cache
+
+# Imágenes: un día en caché
+/assets/img/*
+  Cache-Control: public, max-age=86400
