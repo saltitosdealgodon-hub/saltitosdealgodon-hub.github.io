@@ -88,7 +88,7 @@
       ? `<span class="disp-nota">${n} disponible${n > 1 ? "s" : ""}</span>`
       : `<span class="disp-nota disp-nota--vacia">Próxima camada</span>`;
     return `<a class="tarjeta-raza" href="/razas#${r.id}" data-revelar style="--d:${(i % 4) * 0.07}s">
-      <div class="media-fondo" style="--fondo:${r.fondo}">
+      <div class="media-fondo">
         <span class="chip chip--flotante">${esc(r.tamano)}</span>
         ${dibujo(r.look)}
         ${nota}
@@ -109,7 +109,7 @@
     const fav = favoritos.has(c.codigo);
     const nota = c.estado === "proximamente" ? `listo el ${fechaCorta(listoDesde(c))}` : edad(c);
     return `<article class="tarjeta-conejo tarjeta-conejo--${c.estado}" data-revelar style="--d:${(i % 3) * 0.07}s">
-      <div class="media-fondo" style="--fondo:${r.fondo}">
+      <div class="media-fondo">
         ${media(c)}
         <span class="estado estado--${c.estado}">${ESTADOS[c.estado]}</span>
       </div>
@@ -151,7 +151,7 @@
         ? `<div><dt>Listo para casa</dt><dd>${fechaLarga(listoDesde(c))}</dd></div>`
         : `<div><dt>Edad</dt><dd>${edad(c)}</dd></div>`;
     ventana.innerHTML = `<div class="ficha-interior">
-      <div class="media-fondo" style="--fondo:${r.fondo}">
+      <div class="media-fondo">
         ${media(c)}
         <span class="estado estado--${c.estado}">${ESTADOS[c.estado]}</span>
       </div>
@@ -201,78 +201,11 @@
     if (a) abrirFicha(a.dataset.ficha);
   });
 
-  /* Conejito interactivo (sigue el cursor, salta al tocarlo) -------------- */
-  function darVida(host) {
-    const svg = $("svg", host);
-    const mirada = svg && $(".c-mirada", svg);
-    if (!mirada) return;
-    if (!reducir) {
-      let pendiente = 0;
-      let x = 0;
-      let y = 0;
-      addEventListener(
-        "pointermove",
-        (e) => {
-          const r = svg.getBoundingClientRect();
-          const dx = e.clientX - (r.left + r.width / 2);
-          const dy = e.clientY - (r.top + r.height * 0.47);
-          const d = Math.hypot(dx, dy) || 1;
-          const k = Math.min(1, d / 260);
-          x = (dx / d) * 3.4 * k;
-          y = (dy / d) * 2.8 * k;
-          if (!pendiente)
-            pendiente = requestAnimationFrame(() => {
-              mirada.style.transform = `translate(${x.toFixed(2)}px, ${y.toFixed(2)}px)`;
-              pendiente = 0;
-            });
-        },
-        { passive: true }
-      );
-    }
-    const saltar = () => {
-      svg.classList.remove("salta");
-      void svg.getBoundingClientRect();
-      svg.classList.add("salta");
-      if (reducir) return;
-      for (let i = 0; i < 7; i++) {
-        const s = document.createElement("span");
-        s.className = "corazoncito";
-        s.innerHTML = icono("corazon");
-        s.style.setProperty("--x", `${Math.round((Math.random() - 0.5) * 190)}px`);
-        s.style.setProperty("--r", `${Math.round((Math.random() - 0.5) * 70)}deg`);
-        s.style.animationDelay = `${i * 45}ms`;
-        host.append(s);
-        s.addEventListener("animationend", () => s.remove());
-      }
-    };
-    host.setAttribute("role", "button");
-    host.setAttribute("tabindex", "0");
-    host.setAttribute("aria-label", "Haz saltar al conejito");
-    host.addEventListener("click", saltar);
-    host.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        saltar();
-      }
-    });
-  }
-
   /* Página: inicio -------------------------------------------------------- */
   function paginaInicio() {
-    const hero = $("#hero-conejo");
-    if (hero) {
-      hero.innerHTML = dibujo({ pelo: "#FFFFFF", interior: "#F7A9B8" }, "conejo--vivo");
-      darVida(hero);
-    }
     const disponibles = conejitos.filter((c) => c.estado === "disponible").length;
     $$("[data-cuenta='disponibles']").forEach((el) => (el.textContent = disponibles));
     $$("[data-cuenta='razas']").forEach((el) => (el.textContent = razas.length));
-
-    const cinta = $("#cinta-pista");
-    if (cinta) {
-      const fila = razas.map((r) => `<span>${esc(r.nombre)}</span>${icono("chispa")}`).join("");
-      cinta.innerHTML = `<div>${fila}</div><div aria-hidden="true">${fila}</div>`;
-    }
 
     const gr = $("#grid-razas");
     if (gr) gr.innerHTML = razas.map(tarjetaRaza).join("");
@@ -282,11 +215,6 @@
         .slice(0, 6)
         .map(tarjetaConejo)
         .join("");
-
-    const trio = $("#bento-conejos");
-    if (trio) trio.innerHTML = ["holland-lop", "lionhead", "netherland-dwarf"].map((id) => dibujo(razaDe[id].look)).join("");
-    const cta = $("#cta-conejo");
-    if (cta) cta.innerHTML = dibujo({ pelo: "#F3E0C6", sombra: "#DFC29C", orejas: "caidas", largo: 0.95 });
   }
 
   /* Página: catálogo ------------------------------------------------------ */
@@ -436,7 +364,7 @@
       ? `<a class="boton boton--primario" href="/catalogo?raza=${r.id}">Ver ${n} disponible${n > 1 ? "s" : ""} ${icono("flecha", "i-mover")}</a>`
       : `<a class="boton boton--primario" href="#" data-wa="Hola 🐰 quiero que me avisen de la próxima camada de ${esc(r.nombre)}.">Avísame de la próxima camada</a>`;
     return `<article class="raza-detalle" id="${r.id}">
-      <div class="media-fondo raza-media" style="--fondo:${r.fondo}" data-revelar>
+      <div class="media-fondo raza-media" data-revelar>
         <span class="chip chip--flotante">${esc(r.tamano)}</span>
         <span class="raza-num">${String(i + 1).padStart(2, "0")}<small> / ${String(razas.length).padStart(2, "0")}</small></span>
         ${dibujo(r.look)}
@@ -478,7 +406,7 @@
     $("#tabla-razas tbody").innerHTML = razas
       .map(
         (r) => `<tr>
-          <td><span class="tabla-raza"><span class="mini-conejo" style="--fondo:${r.fondo}">${dibujo(r.look)}</span><a href="#${r.id}">${esc(r.nombre)}</a></span></td>
+          <td><span class="tabla-raza"><span class="mini-conejo">${dibujo(r.look)}</span><a href="#${r.id}">${esc(r.nombre)}</a></span></td>
           <td>${esc(r.tamano)}</td>
           <td>${esc(r.peso)}</td>
           <td>${medidor(r.energia, "Energía")}</td>
@@ -514,14 +442,6 @@
       });
     });
     actualizar();
-  }
-
-  /* Página: 404 ----------------------------------------------------------- */
-  function paginaError() {
-    const host = $("#hero-conejo");
-    if (!host) return;
-    host.innerHTML = dibujo({ pelo: "#B9B2AC", orejas: "arriba", largo: 0.8 }, "conejo--vivo");
-    darVida(host);
   }
 
   /* Comunes --------------------------------------------------------------- */
@@ -600,7 +520,7 @@
   }
 
   /* Arranque -------------------------------------------------------------- */
-  const paginas = { inicio: paginaInicio, catalogo: paginaCatalogo, razas: paginaRazas, cuidados: paginaCuidados, error: paginaError };
+  const paginas = { inicio: paginaInicio, catalogo: paginaCatalogo, razas: paginaRazas, cuidados: paginaCuidados };
   paginas[document.body.dataset.pagina]?.();
   cabecera();
   enlazarContacto();

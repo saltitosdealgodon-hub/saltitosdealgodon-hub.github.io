@@ -2,16 +2,17 @@
    Ilustraciones de conejitos en SVG
    Mientras no haya fotos reales, cada conejito se dibuja a partir de su
    "look" (color de pelo, tipo de orejas, patrón…) definido en datos.js.
+   Estilo: trazo de tinta y colores naturales, a juego con el logo.
    Uso: Conejo.svg({ pelo: "#fff", orejas: "caidas" }, { clase: "conejo--vivo" })
    ========================================================================== */
 (function () {
   "use strict";
 
-  const TINTA = "#2A1F1A";
+  const TINTA = "#2B2621";
   const BASE = {
     pelo: "#EFD9C1",
     sombra: null,
-    interior: "#F6B3C0",
+    interior: "#D9B4AB",
     orejas: "arriba", // "arriba" | "caidas" | "una"
     largo: 1, // largo de las orejas
     patron: "solido", // "solido" | "manchas" | "hotot"
@@ -50,16 +51,16 @@
   // Nube de círculos con contorno solo por fuera: trazo grueso detrás y relleno encima
   const nube = (puntos, r, relleno, linea) => {
     const c = puntos.map(([x, y]) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}"/>`).join("");
-    return `<g fill="${linea}" stroke="${linea}" stroke-width="4">${c}</g><g fill="${relleno}">${c}</g>`;
+    return `<g fill="${linea}" stroke="${linea}" stroke-width="4.4">${c}</g><g fill="${relleno}">${c}</g>`;
   };
 
   function svg(look = {}, opciones = {}) {
     const L = Object.assign({}, BASE, look);
     const sombra = L.sombra || mezclar(L.pelo, "#6B4A36", 0.2);
-    const linea = mezclar(L.pelo, TINTA, 0.38);
-    const panza = mezclar(L.pelo, "#FFFFFF", 0.55);
+    const linea = TINTA;
+    const panza = mezclar(L.pelo, "#FBF7F0", 0.5);
     const oscuro = luminancia(L.pelo) < 0.12;
-    const trazo = `stroke="${linea}" stroke-width="2"`;
+    const trazo = `stroke="${linea}" stroke-width="2.2" stroke-linejoin="round"`;
     const orejaColor = L.patron === "manchas" ? L.mancha : L.pelo;
     const melena = mezclar(L.pelo, sombra, 0.45);
     const p = [];
@@ -88,7 +89,7 @@
     };
 
     // Sombra en el suelo
-    p.push(`<ellipse cx="100" cy="194" rx="64" ry="5" fill="${TINTA}" opacity=".08"/>`);
+    p.push(`<ellipse cx="100" cy="194" rx="62" ry="4.5" fill="${TINTA}" opacity=".1"/>`);
 
     // Orejas paradas (van detrás de la cabeza)
     if (L.orejas === "arriba") p.push(orejaArriba(-1), orejaArriba(1));
@@ -129,9 +130,9 @@
     if (L.melena) p.push(nube([[89, 64], [100, 59], [111, 64]], 8.5, melena, linea));
 
     // Cara: cachetes, bigotes, ojos, nariz y boca
-    p.push(`<g fill="#F59AAE" opacity=".45"><ellipse cx="71" cy="111" rx="8" ry="5.5"/><ellipse cx="129" cy="111" rx="8" ry="5.5"/></g>`);
+    p.push(`<g fill="#C99A8F" opacity=".18"><ellipse cx="71" cy="111" rx="8" ry="5.5"/><ellipse cx="129" cy="111" rx="8" ry="5.5"/></g>`);
     p.push(
-      `<path d="M87 110 62 105M87 114 63 119M113 110 138 105M113 114 137 119" fill="none" stroke="${oscuro ? mezclar(L.pelo, "#FFFFFF", 0.5) : linea}" stroke-width="1.3" stroke-linecap="round" opacity=".7"/>`
+      `<path d="M87 110 62 105M87 114 63 119M113 110 138 105M113 114 137 119" fill="none" stroke="${oscuro ? mezclar(L.pelo, "#FFFFFF", 0.5) : linea}" stroke-width="1.1" stroke-linecap="round" opacity=".45"/>`
     );
     if (oscuro) p.push(`<g fill="${mezclar(L.pelo, "#FFFFFF", 0.22)}"><circle cx="82" cy="95" r="9.5"/><circle cx="118" cy="95" r="9.5"/></g>`);
     const ojo = (x) =>
@@ -139,7 +140,7 @@
       `<circle cx="${x - 2.4}" cy="92.4" r="2.5" fill="#fff"/>` +
       `<circle cx="${x + 2.2}" cy="97.6" r="1.1" fill="#fff" opacity=".85"/>`;
     p.push(`<g class="c-ojos"><g class="c-mirada">${ojo(82)}${ojo(118)}</g></g>`);
-    p.push(`<path class="c-nariz" d="M94.5 106.5c0-2 2.6-3 5.5-3s5.5 1 5.5 3c0 2.2-3.2 4.6-5.5 4.6s-5.5-2.4-5.5-4.6z" fill="#E8708A"/>`);
+    p.push(`<path class="c-nariz" d="M94.5 106.5c0-2 2.6-3 5.5-3s5.5 1 5.5 3c0 2.2-3.2 4.6-5.5 4.6s-5.5-2.4-5.5-4.6z" fill="#B57F78"/>`);
     p.push(
       `<path d="M100 111v3.4M100 114.4c-1.3 2.6-4.6 3.3-6.6 1.3M100 114.4c1.3 2.6 4.6 3.3 6.6 1.3" fill="none" stroke="${oscuro ? "#F4E6E0" : mezclar(linea, TINTA, 0.5)}" stroke-width="1.8" stroke-linecap="round"/>`
     );

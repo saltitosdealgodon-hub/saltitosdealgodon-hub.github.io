@@ -49,7 +49,6 @@ window.SALTITOS = {
       energia: 2,
       escala: 0.68,
       precioDesde: 280,
-      fondo: "#FDE2E7",
       descripcion:
         "Compacto, de cabeza redondita y orejas que caen a los lados. Es la raza más pedida por su carita de peluche y porque se adapta muy bien a la vida en casa.",
       look: { pelo: "#E9CBA7", sombra: "#D4AC80", orejas: "caidas", largo: 0.9 },
@@ -68,10 +67,9 @@ window.SALTITOS = {
       energia: 1,
       escala: 0.8,
       precioDesde: 260,
-      fondo: "#FFE8CC",
       descripcion:
         "Un poco más grande que el Holland Lop, de cuerpo firme y orejas largas caídas. Se deja cargar con facilidad y disfruta las siestas acompañado.",
-      look: { pelo: "#FFFBF6", orejas: "caidas", patron: "manchas", mancha: "#E8A15A" },
+      look: { pelo: "#FBF6EE", orejas: "caidas", patron: "manchas", mancha: "#C08A5C" },
     },
     {
       id: "netherland-dwarf",
@@ -87,7 +85,6 @@ window.SALTITOS = {
       energia: 3,
       escala: 0.56,
       precioDesde: 250,
-      fondo: "#E1EEF9",
       descripcion:
         "Cabeza grande, orejas cortitas y ojos enormes: parece un bebé para siempre. Es enérgico y algo tímido al inicio; con paciencia se vuelve muy confiado.",
       look: { pelo: "#B9B2AC", orejas: "arriba", largo: 0.68 },
@@ -106,7 +103,6 @@ window.SALTITOS = {
       energia: 2,
       escala: 0.66,
       precioDesde: 220,
-      fondo: "#FFF2C7",
       descripcion:
         "Su melena lo hace inconfundible. Necesita cepillado frecuente, sobre todo en época de muda, y lo recompensa con un carácter muy cariñoso.",
       look: { pelo: "#F4E3C8", orejas: "arriba", largo: 0.74, melena: true },
@@ -125,10 +121,9 @@ window.SALTITOS = {
       energia: 2,
       escala: 0.74,
       precioDesde: 200,
-      fondo: "#ECE2FA",
       descripcion:
         "Su pelo es tan corto y suave que se siente como terciopelo. Casi no necesita cepillado y es de los más fáciles de cargar y manejar.",
-      look: { pelo: "#8B5E45", orejas: "arriba", interior: "#E9A2AE" },
+      look: { pelo: "#8B6650", orejas: "arriba" },
     },
     {
       id: "angora",
@@ -144,10 +139,9 @@ window.SALTITOS = {
       energia: 1,
       escala: 0.88,
       precioDesde: 320,
-      fondo: "#E2F2E6",
       descripcion:
         "Puro algodón: su lana crece sin parar y necesita cepillado diario y recortes. A cambio, es uno de los conejos más tranquilos que existen.",
-      look: { pelo: "#FFFFFF", orejas: "arriba", largo: 0.95, lanudo: true },
+      look: { pelo: "#FBF8F3", orejas: "arriba", largo: 0.95, lanudo: true },
     },
     {
       id: "hotot-enano",
@@ -163,10 +157,9 @@ window.SALTITOS = {
       energia: 3,
       escala: 0.6,
       precioDesde: 260,
-      fondo: "#E6E9F7",
       descripcion:
         "Blanco de pies a cabeza con un delineado natural alrededor de los ojos. Pequeño, compacto y con muchísima personalidad.",
-      look: { pelo: "#FFFFFF", orejas: "arriba", largo: 0.78, patron: "hotot", mancha: "#2A1F1A" },
+      look: { pelo: "#FBF8F3", orejas: "arriba", largo: 0.78, patron: "hotot", mancha: "#2B2621" },
     },
     {
       id: "belier-frances",
@@ -182,7 +175,6 @@ window.SALTITOS = {
       energia: 1,
       escala: 1,
       precioDesde: 350,
-      fondo: "#E9F0D8",
       descripcion:
         "Grande, pesado y súper tranquilo. Necesita más espacio y comida que las razas pequeñas, pero es el más relajado de todos.",
       look: { pelo: "#A39182", orejas: "caidas", largo: 1.12 },
@@ -222,7 +214,7 @@ window.SALTITOS = {
       precio: 280,
       rasgos: ["Juguetón", "Curioso"],
       descripcion: "Explora cada rincón y luego vuelve a pedir cariño.",
-      look: { pelo: "#FFFBF6", patron: "manchas", mancha: "#D19A61" },
+      look: { pelo: "#FBF6EE", patron: "manchas", mancha: "#B98A60" },
       foto: "",
     },
     {
@@ -278,7 +270,7 @@ window.SALTITOS = {
       precio: 220,
       rasgos: ["Juguetón", "Glotón"],
       descripcion: "Melena naranja y apetito de león. Ama las hojas de culantro.",
-      look: { pelo: "#F3B979", sombra: "#DD9850" },
+      look: { pelo: "#DDAE7C", sombra: "#C3925F" },
       foto: "",
     },
     {

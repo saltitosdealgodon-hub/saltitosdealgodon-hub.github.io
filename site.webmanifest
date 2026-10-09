@@ -3,10 +3,10 @@
   "short_name": "Saltitos",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FFF7EF",
-  "theme_color": "#FFF7EF",
+  "background_color": "#F6F1E8",
+  "theme_color": "#F6F1E8",
   "icons": [
-    { "src": "/assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
-    { "src": "/assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+    { "src": "/assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/assets/img/icono-512.png", "sizes": "512x512", "type": "image/png" }
   ]
 }
